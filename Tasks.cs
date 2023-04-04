@@ -37,8 +37,16 @@ public class Tasks {
         return String.Join(" ", sentence.Split(' ').Select(x => x.Length < 5 ? x : new string(x.Reverse().ToArray())));
     }
 
+    public static Int32 BetweenExtremes(Int32[] numbers) {
+        return numbers.Max() - numbers.Min();
+    }
+
+    public static int GetVowelCount(string str) {
+        return Regex.Matches(str, @"[aeiouy]").Count;
+    }
+
     public static Boolean Narcissistic(int value) {
-        
+        return false;
     }
 }
 
