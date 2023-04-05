@@ -42,7 +42,12 @@ public class Tasks {
     }
 
     public static int GetVowelCount(string str) {
-        return Regex.Matches(str, @"[aeiouy]").Count;
+        return Regex.Matches(str, @"[aeiou]").Count;
+    }
+
+    public static bool ValidatePin(string pin) {
+        return Regex.IsMatch(pin, @"^\b(\d{4}|\d{6})\z", RegexOptions.CultureInvariant);
+        //return pin.All(c => Char.IsDigit(c)) && (pin.Length == 4 || pin.Length == 6);
     }
 
     public static Boolean Narcissistic(int value) {
@@ -52,7 +57,14 @@ public class Tasks {
 
 internal class Start {
     public static async Task Main() {
-        await Console.Out.WriteLineAsync(SpinWords("Hey fellow warriors"));
+        //await Console.Out.WriteLineAsync(SpinWords("Hey fellow warriors"));
+        await TestFunc();
+    }
+
+    public static async Task TestFunc() {
+        string[] fruits = { "apple", "banana", "mango", "orange", "passionfruit", "grape" };
+        var result = fruits.Count(s => s.Contains("banana"));
+        await Console.Out.WriteLineAsync(result.ToString());
     }
 }
 
