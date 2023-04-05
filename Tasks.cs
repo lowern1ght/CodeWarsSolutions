@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography.X509Certificates;
@@ -38,7 +36,8 @@ public class Tasks {
     }
 
     public static Boolean Narcissistic(int value) {
-        
+        //return (int)value.ToString().Select(c => Math.Pow(Char.GetNumericValue(c), value.ToString().Length)).Sum() == value; //Reworked
+        return $"{value}".Sum(c => Math.Pow(int.Parse(c.ToString()), $"{value}".Length)) == value;
     }
 }
 
