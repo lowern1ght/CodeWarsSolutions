@@ -35,6 +35,19 @@ public class Tasks {
         return String.Join(" ", sentence.Split(' ').Select(x => x.Length < 5 ? x : new string(x.Reverse().ToArray())));
     }
 
+    public static Int32 BetweenExtremes(Int32[] numbers) {
+        return numbers.Max() - numbers.Min();
+    }
+
+    public static int GetVowelCount(string str) {
+        return Regex.Matches(str, @"[aeiou]").Count;
+    }
+
+    public static bool ValidatePin(string pin) {
+        return Regex.IsMatch(pin, @"^\b(\d{4}|\d{6})\z", RegexOptions.CultureInvariant);
+        //return pin.All(c => Char.IsDigit(c)) && (pin.Length == 4 || pin.Length == 6);
+    }
+
     public static Boolean Narcissistic(int value) {
         //return (int)value.ToString().Select(c => Math.Pow(Char.GetNumericValue(c), value.ToString().Length)).Sum() == value; //Reworked
         return $"{value}".Sum(c => Math.Pow(int.Parse(c.ToString()), $"{value}".Length)) == value;
@@ -43,7 +56,14 @@ public class Tasks {
 
 internal class Start {
     public static async Task Main() {
-        await Console.Out.WriteLineAsync(SpinWords("Hey fellow warriors"));
+        //await Console.Out.WriteLineAsync(SpinWords("Hey fellow warriors"));
+        await TestFunc();
+    }
+
+    public static async Task TestFunc() {
+        string[] fruits = { "apple", "banana", "mango", "orange", "passionfruit", "grape" };
+        var result = fruits.Count(s => s.Contains("banana"));
+        await Console.Out.WriteLineAsync(result.ToString());
     }
 }
 
