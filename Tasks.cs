@@ -68,8 +68,8 @@ public class Tasks {
         return str.GroupBy(c => c).ToDictionary(c => c.Key, g => g.Count());
     }
 
-    public static string Rot13(string message) {
-        // your code here
+    public static string AlphabetPosition(string text) {
+        return String.Join(" ", text.Where(c => Char.IsLetter(c) != false).Select(c => Char.IsUpper(c) == true ? c - 64 : c - 96));
     }
 }
 
