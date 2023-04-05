@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace CodeWarsTask;
 
@@ -54,12 +56,35 @@ public class Tasks {
         //return (int)value.ToString().Select(c => Math.Pow(Char.GetNumericValue(c), value.ToString().Length)).Sum() == value; //Reworked
         return $"{value}".Sum(c => Math.Pow(int.Parse(c.ToString()), $"{value}".Length)) == value;
     }
+
+    public static Boolean validBraces(String braces) { //Not successes
+        var symbols = new char[] { '{', '}', '(', ')', '[', ']' };
+        var booles = braces.Where(c => symbols.Contains(c));
+        return braces.Length % 2 == 0 
+            && booles.Select((c, i) => c == booles.ElementAtOrDefault(booles.Count() - i )).Any(b => b);
+    }
+
+    public static Dictionary<char, int> CountDisctionary(string str) {
+        return str.GroupBy(c => c).ToDictionary(c => c.Key, g => g.Count());
+    }
+
+    public static string Rot13(string message) {
+        // your code here
+    }
 }
 
 internal class Start {
     public static async Task Main() {
         //await Console.Out.WriteLineAsync(SpinWords("Hey fellow warriors"));
-        await TestFunc();
+        await TestFunc3();
+    }
+
+    public static async Task TestFunc3() {
+        await Console.Out.WriteLineAsync(validBraces("[(])").ToString());
+    }
+
+    public static async Task TestFunc2() {
+        await Console.Out.WriteLineAsync(JsonSerializer.Serialize(Regex.Split("{}(){}[][]", @"(\[|\]|\(|\)|\{|\})")));
     }
 
     public static async Task TestFunc() {
