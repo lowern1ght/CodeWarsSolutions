@@ -9,9 +9,9 @@ using System.Text.Json;
 
 namespace CodeWarsTask;
 
-using static Tasks;
+using static WithoutATopic;
 
-public class Tasks {
+public class WithoutATopic {
     public static string Maskify(string masked) {
         return masked.Length < 4 ? masked :
             new string('#', masked[0..^4].Length) + masked.Substring(masked.Length-4);
@@ -70,27 +70,6 @@ public class Tasks {
 
     public static string AlphabetPosition(string text) {
         return String.Join(" ", text.Where(c => Char.IsLetter(c) != false).Select(c => Char.IsUpper(c) == true ? c - 64 : c - 96));
-    }
-}
-
-internal class Start {
-    public static async Task Main() {
-        //await Console.Out.WriteLineAsync(SpinWords("Hey fellow warriors"));
-        await TestFunc3();
-    }
-
-    public static async Task TestFunc3() {
-        await Console.Out.WriteLineAsync(validBraces("[(])").ToString());
-    }
-
-    public static async Task TestFunc2() {
-        await Console.Out.WriteLineAsync(JsonSerializer.Serialize(Regex.Split("{}(){}[][]", @"(\[|\]|\(|\)|\{|\})")));
-    }
-
-    public static async Task TestFunc() {
-        string[] fruits = { "apple", "banana", "mango", "orange", "passionfruit", "grape" };
-        var result = fruits.Count(s => s.Contains("banana"));
-        await Console.Out.WriteLineAsync(result.ToString());
     }
 }
 
