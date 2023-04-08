@@ -7,3 +7,7 @@ public static class Problem {
         return Regex.Replace(str, @"\b[a-z]", m => m.Value.ToUpper()).Replace(" ", "");
     }
 }
+
+
+using System.Linq;
+using System.Text.RegularExpressions;

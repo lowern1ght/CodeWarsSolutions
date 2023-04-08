@@ -71,11 +71,48 @@ public class WithoutATopic {
     public static string AlphabetPosition(string text) {
         return String.Join(" ", text.Where(c => Char.IsLetter(c) != false).Select(c => Char.IsUpper(c) == true ? c - 64 : c - 96));
     }
+    public static string FakeBin(string x) {
+        return String.Concat(x.Select(c => c >= '5' ? '1' : '0'));
+    }
+
+    public static bool BetterThanAverage(int[] ClassPoints, int YourPoints) {
+        return (int)ClassPoints.Average() < YourPoints;
+    }
+
+    public static int[] ReverseSeq(int n) {
+        return Enumerable.Range(1, n).Reverse().ToArray();
+    }
+
+    public static string EvenOrOdd(int number) {
+        return number % 2 == 0 ? "Even" : "Odd";
+    }
+
+    public static string Smash(string[] words) {
+        return String.Join(" ", words);
+    }
+
+    public static string MakeComplement(string dna) {
+        return String.Concat(dna.ToUpper().Select(c => c == 'A' ? 'T' : c == 'C' ? 'G' : c == 'G' ? 'C' : 'A'));
+    }
+
+    public static string PrinterError(String s) {
+        return $"{s.ToLower().Count(c => c > 'm')}/{s.Length}";
+    }
+
+    public static int GetUnique(IEnumerable<int> numbers) {
+        //return numbers.GroupBy(n => n).Where(g => g.Count() == 1).First().Key;
+        return numbers.GroupBy(n => n).Single(g => g.Count() == 1).Key; //Use Single, without Where, First
+    }
 }
 
 public class CleverSolution {
     //a.kozhanov, использование регулярных выражений
     public static string SpinWords(string sentence) {
         return Regex.Replace(sentence, @"\w{5,}", m => string.Concat(m.Value.Reverse()));
+    }
+
+    //тот же самый мужик a.kozhanov, First принимает делегат, для отбора одного элемента
+    public static int GetUnique(IEnumerable<int> numbers) {
+        return numbers.First(x => numbers.Count(i => i == x) == 1);
     }
 }
